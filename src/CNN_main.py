@@ -13,8 +13,8 @@ from torchvision.datasets import ImageFolder
 
 # %%
 print(os.getcwd())
-file_path = "../data/archive/"
-dataframe = pd.read_csv(file_path+"Test.csv")
+file_path = file_path = "C:/Users/rahul/OneDrive/Desktop/Rahul/Study/Projects/traffic-sign-recognition/data/archive"
+dataframe = pd.read_csv(file_path+"/Test.csv")
 dataframe.head()
 
 # %%
@@ -38,7 +38,7 @@ transform_pipeline = transforms.Compose([
 
 
 # train dataset and loader
-train_dataset = ImageFolder(file_path+"Train",
+train_dataset = ImageFolder(file_path+"/Train",
                             transform=transform_pipeline)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 type(train_dataset)
@@ -66,7 +66,7 @@ class TrafficSignDataset(Dataset):
             image = self.transform(image)
         return image, label
 
-test_dataset = TrafficSignDataset(file_path+"Test",file_path+"Test.csv", transform=transform_pipeline)
+test_dataset = TrafficSignDataset(file_path+"Test",file_path+"/Test.csv", transform=transform_pipeline)
 test_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 
 
@@ -142,12 +142,12 @@ if train:
         epoch_loss = running_loss / len(train_loader.dataset)
         print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {epoch_loss:.4f}")
 else:
-    model_path = "../models/traffic_sign_cnn.pth"
+    model_path = r"C:\Users\rahul\OneDrive\Desktop\Rahul\Study\Projects\traffic-sign-recognition\models\traffic_sign_cnn.pth"
     model.load_state_dict(torch.load(model_path))
     model.eval()
 
 # %%
-model_path = "../models/traffic_sign_cnn.pth"
+model_path = r"C:\Users\rahul\OneDrive\Desktop\Rahul\Study\Projects\traffic-sign-recognition\models\traffic_sign_cnn.pth"
 torch.save(model.state_dict(), model_path)
 
 # %% [markdown]
