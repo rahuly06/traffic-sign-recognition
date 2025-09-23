@@ -5,6 +5,3 @@ torchvision
 pillow
 pandas
 scikit-learn
-matplotlib
-numpy
-opencv-python
