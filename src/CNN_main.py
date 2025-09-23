@@ -13,7 +13,7 @@ from torchvision.datasets import ImageFolder
 
 # %%
 print(os.getcwd())
-file_path = file_path = "C:/Users/rahul/OneDrive/Desktop/Rahul/Study/Projects/traffic-sign-recognition/data/archive"
+file_path = os.path.join("data", "archive")
 dataframe = pd.read_csv(file_path+"/Test.csv")
 dataframe.head()
 
