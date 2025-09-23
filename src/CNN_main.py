@@ -17,6 +17,13 @@ file_path = os.path.join("data", "archive")
 dataframe = pd.read_csv(file_path+"/Test.csv")
 dataframe.head()
 
+# %%
+dataframe.shape
+
+# %%
+image = cv2.imread(r"C:\Users\rahul\OneDrive\Desktop\Rahul\Study\Projects\traffic-sign-recognition\data\archive\Train\0\00000_00000_00025.png")
+image.shape
+plt.imshow(image)
 
 # %% [markdown]
 # Using Imagefolder for labeling
