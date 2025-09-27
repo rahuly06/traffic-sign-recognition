@@ -1,5 +1,4 @@
 data/
-notebooks/
 *.log
 models/runs/
 video.runs/
