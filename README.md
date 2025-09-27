@@ -10,6 +10,9 @@ ImageFolder: Automatically assigns labels based on subfolder names for training.
 ## Results
 Achieved >99% test accuracy on the GTSRB dataset. High accuracy is expected due to clean, well-cropped traffic sign images.
 
+## Combining YOLO and CNN
+YOLOv8 was used or object detection in a image or video, further the CNN model from first part of the project was used to classify the class in those inages and videos
+
 ## References
 GTSRB dataset on Kaggle  <br />
 PyTorch ImageFolder Documentation

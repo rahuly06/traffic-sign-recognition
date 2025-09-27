@@ -2,4 +2,4 @@ data/
 notebooks/
 *.log
 models/runs/
-video
+video.runs/
