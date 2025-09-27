@@ -83,21 +83,42 @@ def process_frame(frame):
 # Trial run
 
 # %%
-cap = cv2.VideoCapture("video/screengrab_fromYoutube_night.mp4")
+cap = cv2.VideoCapture("video/screengrab_fromYoutube_day.mp4")
 
 if not cap.isOpened():
     print("❌ Could not open video file")
+    exit()
+
+output_path = os.path.join("video/", "output_with_cnn.mp4")
+
+fps = cap.get(cv2.CAP_PROP_FPS) or 30  # fallback to 30 if FPS is 0
+frame_size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+out = cv2.VideoWriter(output_path, fourcc, fps, frame_size)
 
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
         break
 
+    # Process frame with YOLO + CNN
     frame = process_frame(frame)
-    cv2.imshow("YOLO + CNN", frame)
 
+    # Ensure frame is 3-channel BGR
+    if len(frame.shape) == 2 or frame.shape[2] != 3:
+        frame = cv2.cvtColor(frame, cv2.COLOR_GRAY2BGR)
+
+    # Write frame to output video
+    out.write(frame)
+
+    # Display live video
+    cv2.imshow("YOLO + CNN", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+# Release everything
 cap.release()
+out.release()
 cv2.destroyAllWindows()
+print(f"✅ Video saved at: {output_path}")
